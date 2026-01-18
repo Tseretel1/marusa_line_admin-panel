@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import Swal from 'sweetalert2';
 import { AdminService } from '../../services/admin.service';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -19,7 +19,7 @@ export class ShopDetailsComponent {
     logo: null,
     location: null,
     gmail: '',
-    subscription: 0,
+    subscription: '',
     instagram: null,
     facebook: null,
     titkok: null,
@@ -34,9 +34,13 @@ export class ShopDetailsComponent {
   };
   oldShopObject!:Shop;
    
-    constructor(private service:AdminService){
-      this.loadShop();
-      this.getShopStats();
+    constructor(private service:AdminService,private route: ActivatedRoute,){
+    const id = this.route.snapshot.paramMap.get('id');
+    if(id){
+        this.shopId = Number(id);
+        this.loadShop();
+        this.getShopStats();
+      }
     }
 
   ngOnInit(): void {
@@ -44,7 +48,7 @@ export class ShopDetailsComponent {
   
   shopId:number = 0;
   loadShop(): void {
-    this.service.getShopById().subscribe({
+    this.service.getShopById(this.shopId).subscribe({
       next: (data: Shop) => {
         this.shop = { ...data };        
         this.shopId = this.shop.id;
@@ -57,7 +61,7 @@ export class ShopDetailsComponent {
   }
 
   getShopStats(): void {
-    this.service.getShopStats().subscribe(
+    this.service.getShopStats(this.shopId).subscribe(
      (resp) => {
         this.shopStats = resp;
       },
@@ -226,7 +230,7 @@ export interface Shop {
   logo: string | null;
   location: string | null;
   gmail: string;
-  subscription: number;
+  subscription: string;
   instagram: string | null;
   facebook: string | null;
   titkok: string | null;

@@ -2,6 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Shop } from '../pages/shop-details/shop-details.component';
+import { AddShop } from '../pages/add-shop/add-shop.component';
+import { SubscriptionObj } from '../pages/home/home.component';
 
 @Injectable({
   providedIn: 'root'
@@ -30,15 +32,21 @@ export class AdminService {
   }
   
   getEveryShop(): Observable<any> {
-    return this.http.get<any>(this.apiUrl+`ControlPanel/get-every-shop`,);
+    return this.http.get<any>(this.apiUrl+`Admin/get-every-shop`,);
   }
-  getShopStats(): Observable<any> {
-    return this.http.get<any>(this.apiUrl+`ControlPanel/get-shop-stats`);
+  getShopById(shopId:number): Observable<any> {
+    return this.http.get<any>(this.apiUrl+`Admin/get-shop-by-id?shopId=${shopId}`,);
   }
-  getShopById(): Observable<any> {
-    return this.http.get<any>(this.apiUrl+`ControlPanel/get-shop-by-id`);
+  getShopStats(shopId:number): Observable<any> {
+    return this.http.get<any>(this.apiUrl+`Admin/get-shop-stats?shopId=${shopId}`);
   }
   UpdateShop(Newshop:Shop): Observable<any> {
-    return this.http.put<any>(this.apiUrl+`ControlPanel/update-shop`,Newshop);
+    return this.http.put<any>(this.apiUrl+`Admin/update-shop`,Newshop);
+  }
+  AddShop(Newshop:AddShop): Observable<any> {
+    return this.http.post<any>(this.apiUrl+`Admin/add-shop`,Newshop);
+  }
+  ChangeSubscription(Newshop:SubscriptionObj): Observable<any> {
+    return this.http.put<any>(this.apiUrl+`Admin/update-subscription`,Newshop);
   }
 }

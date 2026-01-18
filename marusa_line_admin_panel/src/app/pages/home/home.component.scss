@@ -1,0 +1,497 @@
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.shops-container {
+  max-width: 90%;
+  margin: 0 auto;
+  padding: 40px 20px;
+  display: flex;
+
+  flex-direction: column;
+  gap: 30px;
+
+  
+  .shops-title {
+    text-align: center;
+    color: var(--text-primary);
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 40px;
+    animation: fadeIn 0.6s ease-out;
+  }
+  
+  .shops-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    animation: fadeIn 0.6s ease-out;
+  }
+  
+  .shop-card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    transition: var(--transition);
+    position: relative;
+    box-shadow: var(--shadow-md);
+    
+    &:hover {
+      transform: translateY(-8px);
+      border-color: var(--border-hover);
+      box-shadow: var(--shadow-lg);
+    }
+  }
+  .shop-card-add{
+    height: 50px;
+    display: flex;
+    width: 200px;
+    color: white;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    b{
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        text-wrap: nowrap;
+        align-items: center;
+    }
+  }
+  .shop-card-add:hover{
+        transform: translateY(0px);
+  }
+  .shop-logo-cotnainer-align{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    cursor: pointer;
+  }
+  .shop-logo-container {
+    width: 80px;
+    height: 80px;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    flex-shrink: 0;
+    
+    .shop-logo {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    
+    .shop-logo-placeholder {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, var(--accent-green) 0%, #059669 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+      color: white;
+      font-weight: 700;
+    }
+  }
+  
+  .shop-card:hover .shop-logo {
+    transform: scale(1.1);
+  }
+  
+  .shop-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: 6px;
+    cursor: pointer;
+    padding: 20px;
+    .shop-name {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text-primary);
+      text-align: center;
+      margin-bottom: 4px;
+      word-break: break-word;
+    }
+    
+    .shop-location,
+    .shop-email {
+      font-size: 12px;
+      color: var(--text-secondary);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      text-align: center;
+      
+      i {
+        color: var(--accent-green);
+        font-size: 12px;
+      }
+    }
+    
+    .shop-email {
+      word-break: break-all;
+    }
+  }
+  
+  .shop-social {
+    display: flex;
+    gap: 8px;
+    margin-top: 40px;
+    flex-wrap: wrap;
+    padding: 20px;
+    .social-link {
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid var(--border-color);
+        transition: var(--transition);
+        font-size: 16px;
+        position: relative;
+        overflow: hidden;
+        text-decoration:  none;
+        color: white;
+        padding: 10px 20px;
+        flex: 1;
+        gap: 5px;
+      
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 0;
+        height: 100%;
+        transition: width 0.4s ease;
+        z-index: 0;
+      }
+      
+      i {
+        position: relative;
+        z-index: 1;
+        color: white;
+      }
+      
+      &:hover::before {
+        width: 100%;
+      }
+      
+      &:hover {
+        transform: translateY(-4px);
+      }
+      
+      &.instagram {
+        background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+        border-color: rgba(220, 39, 67, 0.3);
+        
+        &::before {
+          background: linear-gradient(45deg, #bc1888 0%, #cc2366 25%, #dc2743 50%, #e6683c 75%, #f09433 100%);
+        }
+        
+        &:hover {
+          box-shadow: 0 0 20px rgba(220, 39, 67, 0.4);
+        }
+      }
+      
+      &.facebook {
+        background: rgba(24, 119, 242, 0.2);
+        border-color: rgba(24, 119, 242, 0.3);
+        
+        &::before {
+          background: #1877F2;
+        }
+        
+        &:hover {
+          box-shadow: 0 0 20px rgba(24, 119, 242, 0.4);
+        }
+      }
+      
+      &.tiktok {
+        background: rgba(255, 255, 255, 0.1);
+        border-color: rgba(255, 255, 255, 0.2);
+        
+        &::before {
+          background: linear-gradient(135deg, #00f2ea 0%, #ff0050 100%);
+        }
+        
+        &:hover {
+          box-shadow: 0 0 20px rgba(255, 0, 80, 0.4);
+        }
+      }
+    }
+  }
+  
+  .shop-payment {
+    width: 100%;
+    padding-top: 8px;
+    border-top: 1px solid var(--border-color);
+    padding: 20px;
+    .payment-icons {
+      display: flex;
+      justify-content: center;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+      cursor: pointer;
+      .payment-badge {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 8px;
+        font-size: 14px;
+        transition: var(--transition);
+        border: 1px solid var(--border-color);
+        color: white;
+        padding: 10px;
+        flex:1;
+        gap: 10px;
+        i {
+          color: white;
+        }
+        
+        &:hover {
+          transform: scale(1.1);
+        }
+        
+        &.bog {
+            border-color: rgba(59, 130, 246, 0.3);
+          background: linear-gradient(135deg, #1e8a2c 0%, #4bbd34 100%);
+        }
+      }
+    }
+  }
+  
+  .empty-state {
+    text-align: center;
+    padding: 80px 20px;
+    color: var(--text-secondary);
+    animation: fadeIn 0.6s ease-out;
+    
+    i {
+      font-size: 64px;
+      margin-bottom: 16px;
+      opacity: 0.5;
+    }
+    
+    p {
+      font-size: 18px;
+      font-weight: 500;
+    }
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Responsive Design
+@media screen and (max-width: 1200px) {
+  .shops-container {
+    .shops-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .shops-container {
+    padding: 30px 16px;
+    
+    .shops-title {
+      font-size: 28px;
+      margin-bottom: 30px;
+    }
+    
+    .shops-grid {
+      gap: 16px;
+    }
+    
+    .shop-card {
+      padding: 18px;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .shops-container {
+    .shops-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+    
+    .shop-card {
+      padding: 16px;
+    }
+    
+    .shop-logo-container {
+      width: 70px;
+      height: 70px;
+      
+      .shop-logo-placeholder {
+        font-size: 28px;
+      }
+    }
+    
+    .shop-info {
+      padding: 10px 0;
+      
+      .shop-name {
+        font-size: 16px;
+      }
+      
+      .shop-location,
+      .shop-email {
+        font-size: 11px;
+      }
+    }
+    
+    .shop-social {
+      .social-link {
+        font-size: 14px;
+      }
+    }
+    
+    .shop-payment {
+      .payment-icons {
+        .payment-badge {
+          font-size: 12px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .shops-container {
+    padding: 20px 12px;
+    
+    .shops-title {
+      font-size: 24px;
+      margin-bottom: 24px;
+    }
+    
+    .shops-grid {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+    
+    .shop-card {
+      aspect-ratio: auto;
+    }
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .shops-container {
+    .shop-card {
+      padding: 16px;
+    }
+    
+    .shop-logo-container {
+      width: 70px;
+      height: 70px;
+      
+      .shop-logo-placeholder {
+        font-size: 28px;
+      }
+    }
+    
+    .shop-info {
+      .shop-name {
+        font-size: 16px;
+      }
+      
+      .shop-location,
+      .shop-email {
+        font-size: 12px;
+      }
+    }
+    
+    .shop-social {
+      gap: 8px;
+      
+      .social-link {
+        font-size: 16px;
+      }
+    }
+  }
+}
+
+
+
+
+.modal-align{
+    width: 100%;
+    height: 100%;
+    z-index: 52;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.151);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation:0.3s popupModalBack;
+        backdrop-filter: blur(10px);
+    .modal-cancel{
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+    .modal{
+        width: 90%;
+        max-width: 500px;
+        padding: 50px;
+        border-radius: 10px;
+        background-color: rgba(0, 0, 0, 0.533);
+        border: 1px solid grey;   
+        backdrop-filter: blur(20px);     
+        color: white;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        animation:0.5s popupModal;
+        z-index: 2;
+        .button-group{
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+            .sub-button{
+                color: white;
+                padding: 20px;
+                border-radius: 5px;
+                border: none;
+                cursor: pointer;
+                width: 200px;
+                border: 1px solid grey;
+                background-color: rgba(0, 0, 0, 0.521);     
+            }
+            .chosen-sub{
+                background-color: red;
+            }
+        }
+    }
+}

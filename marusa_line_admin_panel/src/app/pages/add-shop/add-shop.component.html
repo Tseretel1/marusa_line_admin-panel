@@ -1,1 +1,35 @@
-<p>add-shop works!</p>
+ <div class="profile-container">
+      <div class="profile-content">
+        <div class="form-group" style="display: flex; flex-direction: column; align-items: flex-start;">
+          <label for="shop-name">სახელი <p style="font-size: 12px; color: grey;">({{shop.name.length}}/30)</p></label>
+          <input 
+            id="shop-name"
+            type="text" 
+            [(ngModel)]="shop.name"
+            class="form-input"
+            maxlength="30"
+          />
+        </div>
+        <div class="form-group" style="display: flex; flex-direction: column; align-items: flex-start;">
+          <label for="shop-name">იმეილი</label>
+          <input 
+            id="location"
+            type="" 
+            [(ngModel)]="shop.email"
+            class="form-input"
+          />
+        </div>
+        <div class="form-group" style="display: flex; flex-direction: column; align-items: flex-start;">
+          <label for="shop-name">პაროლი</label>
+          <input 
+            id="location"
+            type="" 
+            [(ngModel)]="shop.password"
+            class="form-input"
+          />
+        </div>
+        <div class="actions">
+          <button class="btn-save" style="width: 100%;" (click)="addShop()">შენახვა</button>
+        </div>
+      </div>
+    </div>
