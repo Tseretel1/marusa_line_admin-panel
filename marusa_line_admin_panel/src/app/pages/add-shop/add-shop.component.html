@@ -1,11 +1,11 @@
  <div class="profile-container">
       <div class="profile-content">
         <div class="form-group" style="display: flex; flex-direction: column; align-items: flex-start;">
-          <label for="shop-name">სახელი <p style="font-size: 12px; color: grey;">({{shop.name.length}}/30)</p></label>
+          <label  for="shop-name">მაღაზიის სახელი <p style="font-size: 12px; color: grey;">({{shop.shopName.length}}/30)</p></label>
           <input 
             id="shop-name"
             type="text" 
-            [(ngModel)]="shop.name"
+            [(ngModel)]="shop.shopName"
             class="form-input"
             maxlength="30"
           />
@@ -15,7 +15,7 @@
           <input 
             id="location"
             type="" 
-            [(ngModel)]="shop.email"
+            [(ngModel)]="shop.gmail"
             class="form-input"
           />
         </div>

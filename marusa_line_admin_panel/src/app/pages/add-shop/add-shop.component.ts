@@ -13,13 +13,13 @@ import { CommonModule } from '@angular/common';
 export class AddShopComponent {
   constructor(private adminService:AdminService){}
   shop :AddShop={
-    name :'',
-    email :'',
+    shopName :'',
+    gmail :'',
     password :'',
   }
 
   addShop(){
-    if(this.shop.password!=''&&this.shop.email!=''&&this.shop.password!=''){
+    if(this.shop.shopName!=''&&this.shop.gmail!=''&&this.shop.password!=''){
       this.adminService.AddShop(this.shop).subscribe(
         (resp)=>{
         }
@@ -28,7 +28,7 @@ export class AddShopComponent {
   }
 }
 export interface AddShop{
-  name:string;
-  email:string;
+  shopName:string;
+  gmail:string;
   password:string;
 }

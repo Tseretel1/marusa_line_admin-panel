@@ -1,19 +1,22 @@
 <div class="shops-container">
     <div class="shop-card shop-card-add" [routerLink]="AppRoutes.addShop">
         <b>
-            მაღაზიის დამატება <i class="fas fa-plus"></i>
+            მაღაზიები 
+            <b style="color: white;">{{shopsList.length}}</b>
+            <i class="fas fa-plus"></i>
         </b>
     </div>
   <div class="shops-grid">
     <div class="shop-card" *ngFor="let shop of shopsList" >
       <div class="shop-payment">
         <div class="payment-icons" >
-          <span *ngIf="shop.bog" class="payment-badge bog" title="BOG" (click)="showModal(shop.id)">
-            <p>
-              პაკეტი:
-            </p>
-            <b style="font-size: 16px;">
+          <span  class="payment-badge" [ngClass]="{'minimal':shop.subscription == '',}" (click)="showModal(shop.id)">
+            <b style="font-size: 16px;" style="display: flex;">
+                <p>
+                    <i class="fas fa-close" style="color: red;" *ngIf="!shop.subscription"> </i>
+                </p>
                 {{shop.subscription}}
+                <i class="fas fa-crown" style="color: orange;font-size: 22px;" *ngIf="shop.subscription=='პრემიუმი'"> </i>
             </b>
           </span>
         </div>
@@ -88,6 +91,7 @@
     <div class="modal-cancel" (click)="hideModal()"></div>
     <div class="modal">
         <div class="button-group" >
+            <button class="sub-button" value="მინიმალური" [ngClass]="{'chosen-sub':openedShop.subscription==''}" (click)="addSubscription('')"><i class="fas fa-close" style="color: red;"></i></button>
             <button class="sub-button" value="მინიმალური" [ngClass]="{'chosen-sub':openedShop.subscription=='მინიმალური'}" (click)="addSubscription('მინიმალური')">მინიმალური</button>
             <button class="sub-button" value="პრემიუმი" [ngClass]="{'chosen-sub':openedShop.subscription=='პრემიუმი'}" (click)="addSubscription('პრემიუმი')">პრემიუმი</button>
         </div>
