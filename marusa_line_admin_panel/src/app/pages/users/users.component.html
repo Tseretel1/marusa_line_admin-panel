@@ -1,0 +1,74 @@
+<div class="inputs-moadl-align" *ngIf="inputsModalVisible">
+  <div class="clse-inputs-modal"  (click)="hideInputsModal()"></div>
+  <div class="inputs-align">
+      <div class="search-align">
+        <input class="user-search" type="text"[(ngModel)]="getuserFitler.userName" (keyup.enter)="clearGmail()"placeholder="სახელი">
+    </div>
+    <div class="search-align">
+        <input class="user-search" type="text" [(ngModel)]="getuserFitler.gmail"  (keyup.enter)="clearUserName()" placeholder="მეილი">
+    </div>   
+  </div>
+</div>
+<div class="user-component">
+    <div class="filters-align" >
+        <div class="filter-button-align">
+          <div class="filter"(click)="getEveryUser()" ><p> ყველა <b>{{totalUserCount}}</b></p> </div>
+          <div class="filter" (click)="openInputsModal()">ძებნა <i class="fas fa-search"></i> </div>
+        </div>
+      </div>
+    <div class="user-align">
+        <div class="user" *ngFor="let u of users" >
+          <div class="copy-user-id" ></div>
+            <div class="status-align"> 
+                <button class="role userid" ># {{u.id}}</button>
+                <button class="role">User</button>
+            </div>
+            <div class="user-profile">
+                <div class="user-profile-container" (click)="copyToClipboard(u.name,0,0)">
+                    <img [src]="u.profilePhoto" class="user-img" alt="">
+                </div>
+                <p class="username">{{u.name}}</p>
+                <div class="info-align" *ngIf="u.phoneNumber"(click)="copyToClipboard(u.phoneNumber,u.id,1)">
+                    <p class="info"  *ngIf="u.phoneNumber" ><i class="fas fa-phone"> </i> {{u.phoneNumber}} </p>
+                    <button class="copy-btn" *ngIf="u.phoneNumber"><i class="fas fa-copy"></i></button>
+                    <span class="copied-span" *ngIf="copiedNumber ==u.id && spanId ==1 &&u.phoneNumber" >✅</span>
+                </div>
+                 <div class="info-align"*ngIf="!u.phoneNumber" >
+                    <p class="info"  ><i class="fas fa-phone"> </i>--- -- -- --</p>
+                    <button class="copy-btn" *ngIf="u.phoneNumber"><i class="fas fa-copy"></i></button>
+                    <span class="copied-span" *ngIf="copiedNumber ==u.id && spanId ==1 &&u.phoneNumber" >✅</span>
+                </div>
+                  <div class="info-align"(click)="copyToClipboard(u.email,u.id,2)">
+                    <p class="info mail"><i class="fas fa-envelope"> </i> {{u.email}} </p>
+                    <button class="copy-btn" *ngIf="u.phoneNumber"><i class="fas fa-copy"></i></button>
+                    <span class="copied-span" *ngIf="copiedNumber ==u.id && spanId ==2" >✅</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="center-pagenation" *ngIf="users">
+     <div class="pageination-align">
+    <div class="buttons-align">
+       <button class="next-button" type="button" (click)="changePage(selectedPage - 1)">
+         <span class="btn-inner--icon">
+           ◀
+         </span>
+       </button>
+       <div class="page-numbers-align">
+         <ng-container *ngFor="let p of [0,1,2,3,4]">
+           <button *ngIf="(pageNumber + p) <= totalPages" class="pageination-buttons"
+             [class.selected]="selectedPage === (pageNumber + p)" (click)="changePage(pageNumber + p)">
+             {{ pageNumber + p }}
+           </button>
+         </ng-container>
+       </div>
+       <button class="next-button" type="button" (click)="changePage(selectedPage + 1)">
+         <span class="btn-inner--icon">
+          ▶
+         </span>
+       </button>
+    </div>
+</div>
+</div>

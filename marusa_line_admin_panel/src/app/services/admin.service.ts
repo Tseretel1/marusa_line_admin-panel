@@ -11,8 +11,8 @@ import { SubscriptionObj } from '../pages/home/home.component';
 export class AdminService {
 
 
-  private apiUrl = 'https://localhost:7173/';
- //private apiUrl = 'https://192.168.1.11:7174/';
+ // private apiUrl = 'https://localhost:7173/';
+ private apiUrl = 'https://192.168.1.11:7174/';
   constructor(private http:HttpClient)
   {
 
@@ -49,4 +49,26 @@ export class AdminService {
   ChangeSubscription(Newshop:SubscriptionObj): Observable<any> {
     return this.http.put<any>(this.apiUrl+`Admin/update-subscription`,Newshop);
   }
+  GetusersList(filter:Pagination): Observable<GetusersDto[]> {
+    return this.http.post<GetusersDto[]>(this.apiUrl+`Admin/get-users`,filter);
+  }
+}
+export interface Pagination{
+    userName:string|null,
+    gmail:string|null,
+    pageNumber:number;
+    pageSize:number;
+}
+export interface GetusersDto {
+  id: number;
+  email: string;
+  name: string;
+  profilePhoto: string;
+  location: string;
+  phoneNumber: string;
+  role: string;
+  totalCount:number;
+  paidOrdersCount: number,
+  unPaidOrdersCount: number,
+  isBlocked: boolean,
 }
