@@ -103,6 +103,11 @@ constructor (private service:AdminService,private router: Router){
   }
   clearUserName(){
     this.getuserFitler.userName = null;
+  }
+  searchUserName(){
+    this.getUsers();
+  }
+  searchgmail(){
     this.getUsers();
   }
   blockedCount:number = 0;
@@ -121,7 +126,6 @@ constructor (private service:AdminService,private router: Router){
   hideInputsModal(){
     this.inputsModalVisible = false;
   }
-
 }
 
 export interface GetusersDto {

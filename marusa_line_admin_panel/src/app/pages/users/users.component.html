@@ -2,10 +2,11 @@
   <div class="clse-inputs-modal"  (click)="hideInputsModal()"></div>
   <div class="inputs-align">
       <div class="search-align">
-        <input class="user-search" type="text"[(ngModel)]="getuserFitler.userName" (keyup.enter)="clearGmail()"placeholder="სახელი">
+        <input class="user-search" type="text"[(ngModel)]="getuserFitler.userName"(focus)="clearUserName()" (keyup.enter)="searchgmail()"placeholder="სახელი">
     </div>
     <div class="search-align">
-        <input class="user-search" type="text" [(ngModel)]="getuserFitler.gmail"  (keyup.enter)="clearUserName()" placeholder="მეილი">
+        <input class="user-search" type="text" [(ngModel)]="getuserFitler.gmail"  (focus)="clearUserName()"  (keyup.enter)="searchUserName()" placeholder="მეილი">
+        <button class="search-button" (click)="getUsers()">ძებნა</button>
     </div>   
   </div>
 </div>

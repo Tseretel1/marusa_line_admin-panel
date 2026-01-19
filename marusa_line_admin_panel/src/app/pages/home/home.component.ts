@@ -4,15 +4,17 @@ import { CommonModule } from '@angular/common';
 import { AdminService } from '../../services/admin.service';
 import { Shop } from '../shop-details/shop-details.component';
 import { AppRoutes } from '../../shared/appRoutes';
+import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, RouterLink,FormsModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
 export class HomeComponent {
   shopsList: Shop[] = [];
+  OldshopsList: Shop[] = [];
   AppRoutes =AppRoutes;
   constructor(
     private adminService: AdminService,
@@ -25,7 +27,7 @@ export class HomeComponent {
     this.adminService.getEveryShop().subscribe(
       (data) => {
         this.shopsList = data;
-        console.log(this.shopsList)
+        this.OldshopsList = this.shopsList;
       },
     );
   }
@@ -66,6 +68,20 @@ export class HomeComponent {
         this.hideModal();
       }
     )
+  }
+  shopSearchText: string = '';
+  searchShop() {
+    const text = this.shopSearchText.toLowerCase();
+    this.shopsList=[];
+    setTimeout(() => {
+      this.shopsList = this.OldshopsList;
+      this.shopsList = this.shopsList.filter(x =>
+        x.name?.toLowerCase().includes(text)
+      );
+    }, 1);
+  }
+  revertShopSearch(){
+    this.shopsList = this.OldshopsList;
   }
 }
 export interface SubscriptionObj{

@@ -8,7 +8,6 @@
 .shops-container {
   max-width: 90%;
   margin: 0 auto;
-  padding: 40px 20px;
   display: flex;
 
   flex-direction: column;
@@ -30,7 +29,16 @@
     gap: 20px;
     animation: fadeIn 0.6s ease-out;
   }
-  
+  @keyframes fadeInShop {
+    from{
+        opacity: 0;
+        scale: 0.9;
+    }
+    to{
+        scale: 1;
+        opacity: 1;
+    }
+  }
   .shop-card {
     background-color: var(--bg-card);
     border: 1px solid var(--border-color);
@@ -42,17 +50,32 @@
     transition: var(--transition);
     position: relative;
     box-shadow: var(--shadow-md);
-    
+    padding: 5px 10px;
+    animation: fadeInShop 0.5s;
     &:hover {
       transform: translateY(-8px);
       border-color: var(--border-hover);
       box-shadow: var(--shadow-lg);
     }
+    .search-input{
+        color: white;
+        border: none;
+        border-bottom: 2px solid white;
+        background-color: transparent;
+        padding: 5px 10px;
+        outline: none;
+        width: 120px;
+    }
+    .search-input:focus{
+    }
+  }
+  .header-align{
+    display: flex;
+    gap: 10px;
   }
   .shop-card-add{
     height: 50px;
     display: flex;
-    width: 200px;
     color: white;
     align-items: center;
     justify-content: center;
@@ -60,7 +83,7 @@
     b{
         display: flex;
         justify-content: center;
-        gap: 10px;
+        gap: 5px;
         text-wrap: nowrap;
         align-items: center;
     }
@@ -115,7 +138,6 @@
     width: 100%;
     gap: 6px;
     cursor: pointer;
-    padding: 20px;
     .shop-name {
       font-size: 18px;
       font-weight: 700;
@@ -236,14 +258,12 @@
   .shop-payment {
     width: 100%;
     padding-top: 8px;
-    border-top: 1px solid var(--border-color);
-    padding: 20px;
+    padding: 10px;
     .payment-icons {
       display: flex;
       justify-content: center;
       gap: 6px;
       flex-wrap: wrap;
-      margin-top: 20px;
       cursor: pointer;
       .payment-badge {
         display: flex;
@@ -257,21 +277,21 @@
         flex:1;
         gap: 10px;
         border: 2px solid transparent;
-        background: #667eea;
+        // background: #00f2ea;
+        background: #1a9a25;
         i {
           color: white;
         }
-        
-        &:hover {
-          transform: scale(1.1);
-        }
-        
-        &.bog {
-        }
+    }
+    .nosub{
+      background-color: black;
+      border: 1px solid black;
+      .fas{
+        font-size: 20px;
+      }
     }
     .minimal{
-      background-color: transparent;
-      border: 2px solid red;
+        background-color: #667eea;
     }
 }
 
@@ -319,8 +339,6 @@
 
 @media screen and (max-width: 1024px) {
   .shops-container {
-    padding: 30px 16px;
-    
     .shops-title {
       font-size: 28px;
       margin-bottom: 30px;
@@ -348,16 +366,12 @@
     }
     
     .shop-logo-container {
-      width: 70px;
-      height: 70px;
-      
       .shop-logo-placeholder {
         font-size: 28px;
       }
     }
     
     .shop-info {
-      padding: 10px 0;
       
       .shop-name {
         font-size: 16px;
@@ -387,8 +401,6 @@
 
 @media screen and (max-width: 600px) {
   .shops-container {
-    padding: 20px 12px;
-    
     .shops-title {
       font-size: 24px;
       margin-bottom: 24px;
@@ -412,9 +424,6 @@
     }
     
     .shop-logo-container {
-      width: 70px;
-      height: 70px;
-      
       .shop-logo-placeholder {
         font-size: 28px;
       }
