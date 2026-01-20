@@ -51,7 +51,7 @@
     position: relative;
     box-shadow: var(--shadow-md);
     padding: 5px 10px;
-    animation: fadeInShop 0.5s;
+    // animation: fadeInShop 0.5s;
     &:hover {
       transform: translateY(-8px);
       border-color: var(--border-hover);

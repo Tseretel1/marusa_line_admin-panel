@@ -13,7 +13,7 @@
         </div>
         <div class="shop-card shop-card-add" >
             <b>
-                <input type="text" class="search-input" [(ngModel)]="shopSearchText"  (keyup.enter)="searchShop()">
+                <input type="text" class="search-input" [(ngModel)]="shopSearchText"  (ngModelChange)="searchShop()">
                 <i class="fas fa-search" (click)="searchShop()"></i>
             </b>
         </div>
